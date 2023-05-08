@@ -4,14 +4,19 @@ import { Theme } from '../../constants'
 export const styles=StyleSheet.create({
     container:{
         flex: 1,
-        justifyContent:'center',
-        alignItems:'center',
+    },
+    selectedTimeContainer:{
+        gap:10,
+        borderBottomWidth:1,
+        borderBottomColor:Theme.colors.textColor,
+        marginBottom:10
     },
     listContainer:{
-        maxHeight:'20%',
+        maxHeight:'30%',
     },
     text:{
         color:Theme.colors.textColor,
+        fontSize:16,
     },
 }
 )

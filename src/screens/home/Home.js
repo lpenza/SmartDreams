@@ -35,14 +35,15 @@ const Home = ({ onSelectTime }) => {
         setState({ ...state, minute: newText, minuteOk: true })
     }
     const handleChangeTime = (newText) => {
-        setState({ ...state, time: newText, timeOk: true })
+        setState({ ...state, time: newText.toUpperCase(), timeOk: true })
     }
 
     const handleSetTime = () => {
         const Ok = state.hourOk && state.minuteOk && state.timeOk
         if (!Ok) return
-        let selectedTime = `${state.hour}:${state.minute}:${state.time}`
-        onSelectTime(selectedTime)
+        const date = new Date();
+        date.setHours(Number(state.hour), Number(state.minute),0);
+        onSelectTime(date)
         setState(initialState)
     }
 

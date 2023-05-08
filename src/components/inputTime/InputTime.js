@@ -1,6 +1,8 @@
-import { View,TextInput } from "react-native"
-import { styles } from "./styles" 
+import { View, TextInput } from "react-native"
+import { styles } from "./styles"
 import { Theme } from "../../constants";
+
+
 
 export const InputTime = ({
     hourValue,
@@ -10,6 +12,8 @@ export const InputTime = ({
     timeValue,
     timeChange
 }) => {
+
+
     return (
         <View style={styles.timeContainer}>
             <TextInput
@@ -19,6 +23,7 @@ export const InputTime = ({
                 keyboardType="number-pad"
                 placeholder="HH"
                 placeholderTextColor={Theme.colors.textColor}
+                maxLength={2}
             />
             <TextInput
                 style={styles.input}
@@ -27,6 +32,7 @@ export const InputTime = ({
                 keyboardType="number-pad"
                 placeholder="MM"
                 placeholderTextColor={Theme.colors.textColor}
+                maxLength={2}
             />
             <TextInput
                 style={styles.input}
@@ -34,9 +40,12 @@ export const InputTime = ({
                 onChangeText={timeChange}
                 placeholder="AM"
                 placeholderTextColor={Theme.colors.textColor}
+                maxLength={2}
             />
-        </View>
+        </View >
     )
 }
+
+
 
 export default InputTime

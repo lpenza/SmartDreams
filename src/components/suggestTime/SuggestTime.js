@@ -1,13 +1,16 @@
-import { Text,View } from "react-native"
+import { Text, View,TouchableOpacity } from "react-native"
 import { styles } from "./styles"
 
-export const SuggestTime = ({item}) => {
+export const SuggestTime = ({ item }) => {
     return (
-        <View>
-        <Text style={styles.text}>
-            {item.time}
-        </Text>
-    </View>
+        <TouchableOpacity style={styles.container} onPress={()=>alert('Sweet Dreams!!')}>
+            <Text style={styles.text}>
+                {item.time}
+            </Text>
+            <Text>
+                {item.id}
+            </Text>
+        </TouchableOpacity>
     )
 }
 
