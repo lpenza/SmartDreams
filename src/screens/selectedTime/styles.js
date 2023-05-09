@@ -9,14 +9,17 @@ export const styles=StyleSheet.create({
         gap:10,
         borderBottomWidth:1,
         borderBottomColor:Theme.colors.textColor,
-        marginBottom:10
+        marginBottom:10,
+        width:'100%'
     },
     listContainer:{
         maxHeight:'30%',
+        marginBottom:30
     },
     text:{
         color:Theme.colors.textColor,
-        fontSize:16,
+        fontSize:19,
+        
     },
 }
 )

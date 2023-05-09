@@ -9,9 +9,10 @@ export const styles=StyleSheet.create({
         borderRightWidth:1,
         borderRadius:6,
         height:80,
-        width:63,
-        padding:18,
-        fontSize:16,
+        width:55,
+        fontSize:14,
+        textAlign:'center',
+        paddingVertical:25
     },
     timeContainer:{
         flexDirection:'row',

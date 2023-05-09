@@ -12,6 +12,14 @@ export const styles = StyleSheet.create({
         fontSize: 30,
         marginVertical: 40
     },
+    // optionsContainer:{
+    //     flexDirection:'row',
+    //     marginBottom:10,
+    //     width: '60%',
+    //     justifyContent: 'space-around',
+    //     gap:10
+
+    // },
     optionText: {
         color: Theme.colors.textColor,
         fontSize: 17,
@@ -25,7 +33,6 @@ export const styles = StyleSheet.create({
         borderRadius: 10,
     },
     buttonsCointainer: {
-        // flexDirection: 'row',
         width: '60%',
         justifyContent: 'space-around',
         marginTop: 20,

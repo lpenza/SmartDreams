@@ -1,84 +1,67 @@
-import { View, Text, Button } from "react-native";
-import { styles } from './styles'
+import { View, Text, Button, TouchableOpacity } from "react-native";
+import { styles } from "./styles";
 import { useState } from "react";
 import { InputTime } from "../../components";
 
+
 const Home = ({ onSelectTime }) => {
-    const initialState = {
-        hour: '',
-        minute: '',
-        time: '',
-        hourOk: false,
-        minuteOk: false,
-        timeOk: false,
-    }
-    const [state, setState] = useState(initialState)
+  const initialState = {
+    hour: "HH",
+    minute: "MM",
+    time: "AM",
+    hourOk: false,
+    minuteOk: false,
+    timeOk: false,
+    date: new Date(1598051730000),
+    showPicker: false,
+  };
+  const [state, setState] = useState(initialState);
 
-    const validateInput = (tipe, input) => {
-        const regexHour = /^([1-9]|1[0-2])$/;
-        const regexMinute = /^([0-9]|[1-5][0-9]|60)$/;
-        const regexTime = /^(am|pm)$/;
-        switch (tipe) {
-            case 'h':
-                return regexHour.test(input)
-            case 'm':
-                return regexMinute.test(input)
-            case 't':
-                return regexTime.test(input)
-        }
-    }
+  const handleChangeHour = (event, selectedDate) => {
+    const currentDate = selectedDate;
+    const horas = selectedDate.getHours();
+    const minutos = selectedDate.getMinutes();
+    const meridiano = selectedDate
+      .toLocaleTimeString("en-US", { hour12: true })
+      .slice(-2);
+    setState({ ...state, date: currentDate, hourOk: true, showPicker: false,hour:horas,minute:minutos,time:meridiano });
+  };
+  const handleSetTime = () => {
+    if (!state.hourOk) return;
+    onSelectTime(state.date);
+    setState(initialState);
+  };
 
-    const handleChangeHour = (newText) => {
-        setState({ ...state, hour: newText, hourOk: true })
-    }
-    const handleChangeMinute = (newText) => {
-        setState({ ...state, minute: newText, minuteOk: true })
-    }
-    const handleChangeTime = (newText) => {
-        setState({ ...state, time: newText.toUpperCase(), timeOk: true })
-    }
+  const handleSleepNow = () => {
+    const dateNow=new Date()
+    onSelectTime(dateNow,true)
+    setState(initialState);
+  };
 
-    const handleSetTime = () => {
-        const Ok = state.hourOk && state.minuteOk && state.timeOk
-        if (!Ok) return
-        const date = new Date();
-        date.setHours(Number(state.hour), Number(state.minute),0);
-        onSelectTime(date)
-        setState(initialState)
-    }
-
-    const handleSleepNow = () => {
-        alert('Sweet Dreams!!')
-    }
-
-    return (
-        <View style={styles.container}>
-            <Text style={styles.text}>I want to wake up at...</Text>
-            <View style={styles.timeContainer}>
-                <InputTime
-                    hourValue={state.hour}
-                    hourChange={handleChangeHour}
-                    minuteValue={state.minute}
-                    minuteChange={handleChangeMinute}
-                    timeValue={state.time}
-                    timeChange={handleChangeTime}
-                />
-            </View>
-            <View style={styles.buttonsCointainer}>
-                <Button
-                    title="Choose bedtime"
-                    onPress={handleSetTime}
-                />
-                <Text style={styles.optionText}>
-                    If you want to go to bed now...
-                </Text>
-                <Button
-                    title="Sleep Now"
-                    onPress={handleSleepNow}
-                />
-            </View>
-        </View>
-    )
-}
+  return (
+    <View style={styles.container}>
+      <Text style={styles.text}>I want to wake up at...</Text>
+      <Text style={styles.tex}>I want to go to bed at...</Text>
+      <TouchableOpacity
+        style={styles.timeContainer}
+        onPress={() => setState({ ...state, showPicker: true })}
+      >
+        <InputTime
+          hourValue={state.date}
+          hourChange={handleChangeHour}
+          showPicker={state.showPicker}
+          hour={state.hour}
+          minute={state.minute}
+          time={state.time}
+        />
+      </TouchableOpacity>
+      <View style={styles.buttonsCointainer}>
+        <Button title="Calculate" onPress={handleSetTime} disabled={!state.hourOk}/>
+        <Text style={styles.optionText}>If you want to go to bed now...</Text>
+        <Button title="Sleep Now" onPress={handleSleepNow} />
+      </View>
+    </View>
+  );
+};
 
 export default Home;

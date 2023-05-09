@@ -7,12 +7,13 @@ export default function App() {
   const initialState = {
     selectedTime:false,
     time:'',
+    // isNow:false,
   }
 
   const [state, setState] = useState(initialState)
 
-  const onSelectTime=(time)=>{
-    setState({...state,selectedTime:true,time:time})
+  const onSelectTime=(time,isNow=false)=>{
+    setState({...state,selectedTime:true,time:time,isNow:isNow})
   }
 
   const onClear=()=>{
@@ -21,7 +22,7 @@ export default function App() {
 
   const Container = ({onSelectTime}) => (
     state.selectedTime ?
-      <SelectedTime time={state.time} onClear={onClear} /> : <Home onSelectTime={onSelectTime} />
+      <SelectedTime time={state.time} onClear={onClear} isNow={state.isNow} /> : <Home onSelectTime={onSelectTime} />
   )
 
   return (

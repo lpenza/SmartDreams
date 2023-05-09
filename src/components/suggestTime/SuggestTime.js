@@ -7,9 +7,6 @@ export const SuggestTime = ({ item }) => {
             <Text style={styles.text}>
                 {item.time}
             </Text>
-            <Text>
-                {item.id}
-            </Text>
         </TouchableOpacity>
     )
 }
