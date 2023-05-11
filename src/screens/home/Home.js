@@ -41,7 +41,7 @@ const Home = ({ onSelectTime }) => {
   return (
     <View style={styles.container}>
       <Text style={styles.text}>I want to wake up at...</Text>
-      <Text style={styles.tex}>I want to go to bed at...</Text>
+      {/* <Text style={styles.tex}>I want to go to bed at...</Text> */}
       <TouchableOpacity
         style={styles.timeContainer}
         onPress={() => setState({ ...state, showPicker: true })}

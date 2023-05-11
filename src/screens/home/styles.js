@@ -10,7 +10,8 @@ export const styles = StyleSheet.create({
     text: {
         color: Theme.colors.textColor,
         fontSize: 30,
-        marginVertical: 40
+        marginVertical: 40,
+        fontFamily:'OpenSans-Bold'
     },
     // optionsContainer:{
     //     flexDirection:'row',
