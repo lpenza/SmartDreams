@@ -1,12 +1,12 @@
 import { View, Text } from "react-native";
 import { styles } from "./styles";
 import DateTimePicker from "@react-native-community/datetimepicker";
-import { Theme } from "../../constants";
+
 
 export const InputTime = ({ hourValue, hourChange, showPicker,hour,minute,time }) => {
 
   return (
-    <View>
+    <View style={styles.container}>
       <View style={styles.timeContainer}>
         <Text style={styles.input}>{hour}</Text>
         <Text style={styles.input}>{minute}</Text>

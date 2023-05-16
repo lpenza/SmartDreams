@@ -2,12 +2,18 @@ import { Text, View, Button, FlatList } from "react-native";
 import { SuggestTime } from "../../components";
 import { styles } from "./styles";
 
-const SelectedTime = ({ time, onClear, isNow }) => {
+const SelectedTime = ({ route }) => {
+  const { hour, minute, second, isNow } = route.params;
+
+  const time = new Date();
+  time.setHours(hour);
+  time.setMinutes(minute);
+  time.setSeconds(second);
 
   const findOptions = () => {
     let options = [];
     let newSuggestedtime;
-    for (i = 0; i < 10; i++) {
+    for (i = 0; i < 6; i++) {
       if (!isNow) {
         if (i === 0) {
           newSuggestedtime = new Date(time.setMinutes(time.getMinutes() - 105));
@@ -33,29 +39,30 @@ const SelectedTime = ({ time, onClear, isNow }) => {
           minute: "numeric",
           second: undefined,
         }),
-        status: "",
+        status: "SUGGESTED",
         cycles: "",
         hours: "",
       };
-      options =!isNow? [...options, newSuggest].reverse():[...options, newSuggest];
+      options.push(newSuggest)
     }
+    options = !isNow ? options.reverse() : options;
     return options;
   };
 
+  const timeSelected = time.toLocaleTimeString("en-US", {
+    hour12: true,
+    hour: "numeric",
+    minute: "numeric",
+    second: undefined,
+  });
+
   return (
     <View style={styles.container}>
-      <View style={styles.selectedTimeContainer}>
+      <View style={styles.titleContainer}>
         <Text style={styles.text}>
-          {!isNow?
-          `Bedtime options for feeling refreshed at 
-          ${time.toLocaleTimeString("en-US", {
-            hour12: true,
-            hour: "numeric",
-            minute: "numeric",
-            second: undefined,
-          })} :`
-          :'If you sleep now, set alarm for these times:'
-          }
+          {!isNow
+            ? `Bedtime options for feeling refreshed at: ${timeSelected}`
+            : "If you sleep now, set alarm for these times:"}
         </Text>
       </View>
       <View style={styles.listContainer}>
@@ -65,7 +72,6 @@ const SelectedTime = ({ time, onClear, isNow }) => {
           keyExtractor={(item) => item.id}
         />
       </View>
-      <Button onPress={onClear} title="Go back" />
     </View>
   );
 };

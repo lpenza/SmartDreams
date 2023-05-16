@@ -1,25 +1,23 @@
-import {StyleSheet} from 'react-native'
-import { Theme } from '../../constants'
+import { StyleSheet } from "react-native";
+import { Theme } from "../../constants";
 
-export const styles=StyleSheet.create({
-    container:{
-        flex: 1,
-    },
-    selectedTimeContainer:{
-        gap:10,
-        borderBottomWidth:1,
-        borderBottomColor:Theme.colors.textColor,
-        marginBottom:10,
-        width:'100%'
-    },
-    listContainer:{
-        maxHeight:'30%',
-        marginBottom:30
-    },
-    text:{
-        color:Theme.colors.textColor,
-        fontSize:19,
-        
-    },
-}
-)
+export const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: Theme.colors.backGroundColor,
+    paddingTop: 20,
+  },
+  titleContainer:{
+    marginHorizontal:6,
+    marginBottom:6
+  },
+  listContainer: {
+    flex: 1,
+  },
+  text: {
+    color: Theme.colors.textColor,
+    fontSize: 14,
+    textAlign: "center",
+    fontFamily:'OpenSans-Bold'
+  },
+});
