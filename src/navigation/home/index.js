@@ -5,7 +5,7 @@ import { Theme } from "../../constants";
 
 const Stack = createNativeStackNavigator();
 
-const MainNavigator = () => {
+const HomeNavigator = () => {
   return (
     <Stack.Navigator initialRouteName="Home"
     screenOptions={{
@@ -27,4 +27,4 @@ const MainNavigator = () => {
   );
 };
 
-export default MainNavigator;
+export default HomeNavigator;
