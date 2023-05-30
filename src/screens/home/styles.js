@@ -20,7 +20,6 @@ export const styles = StyleSheet.create({
   icon: {
     width: 60,
     height: 60,
-    // transform: [{rotate: '116deg'}],
   },
   optionText: {
     color: Theme.colors.textColor,
@@ -39,7 +38,6 @@ export const styles = StyleSheet.create({
   },
   buttonsCointainer: {
     justifyContent: "space-around",
-    marginTop: 20,
-    gap: 5,
+    marginTop: 70,
   },
 });

@@ -7,8 +7,8 @@ export const SuggestTime = ({ item }) => {
       <TouchableOpacity
         style={styles.containerTouchable}
         onPress={() =>
-          Alert.alert("Sweet Dreams!!",`You are going to wake up at: ${item.time}`, [
-            { text: "OK", onPress: () => console.log("OK Pressed") },
+          Alert.alert("Sweet Dreams!!",`You selected the time: ${item.time}`, [
+            { text: "Set Alarm", onPress: () => console.warn("Sweet Dreams!!",`You are going to wake up at: ${item.time}`) },
           ])
         }
       >

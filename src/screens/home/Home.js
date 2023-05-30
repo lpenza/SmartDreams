@@ -61,20 +61,6 @@ const Home = ({ navigation }) => {
     setState(initialState);
   };
 
-  const handleSleepNow = () => {
-    const dateNow = new Date();
-    const hour = dateNow.getHours();
-    const minute = dateNow.getMinutes();
-    const second = dateNow.getSeconds();
-    navigation.navigate("SelectedTime", {
-      hour,
-      minute,
-      second,
-      isNow: true,
-    });
-    setState(initialState);
-  };
-
   return (
     <View style={styles.container}>
       <View style={styles.titleContainer}>
@@ -87,7 +73,6 @@ const Home = ({ navigation }) => {
         />
         <Text style={styles.text}>I want to wake up at...</Text>
       </View>
-      {/* <Text style={styles.tex}>I want to go to bed at...</Text> */}
       <TouchableOpacity
         style={styles.timeContainer}
         onPress={() => setState({ ...state, showPicker: true })}
@@ -105,13 +90,7 @@ const Home = ({ navigation }) => {
         <Button
           title="Calculate"
           onPress={handleSetTime}
-          color={Theme.colors.backGroundColor}
-        />
-        <Text style={styles.optionText}>If you want to go to bed now...</Text>
-        <Button
-          title="Sleep Now"
-          onPress={handleSleepNow}
-          color={Theme.colors.backGroundColor}
+          // color={Theme.colors.backGroundColor}
         />
       </View>
     </View>

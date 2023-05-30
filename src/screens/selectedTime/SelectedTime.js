@@ -1,9 +1,20 @@
-import { Text, View, Button, FlatList } from "react-native";
+import { Text, View, FlatList } from "react-native";
 import { SuggestTime } from "../../components";
 import { styles } from "./styles";
 
 const SelectedTime = ({ route }) => {
-  const { hour, minute, second, isNow } = route.params;
+  
+  let hour, minute, second, isNow;
+
+  if (route.params) {
+    ({ hour, minute, second, isNow } = route.params);
+  } else {
+    const dateNow = new Date();
+    hour = dateNow.getHours();
+    minute = dateNow.getMinutes();
+    second = dateNow.getSeconds();
+    isNow = true;
+  }
 
   const time = new Date();
   time.setHours(hour);
@@ -43,7 +54,7 @@ const SelectedTime = ({ route }) => {
         cycles: "",
         hours: "",
       };
-      options.push(newSuggest)
+      options.push(newSuggest);
     }
     options = !isNow ? options.reverse() : options;
     return options;
