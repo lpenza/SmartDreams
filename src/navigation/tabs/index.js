@@ -1,5 +1,5 @@
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import { SleepNow, Config } from "../../screens";
+import { Config, SelectedTime } from "../../screens";
 import HomeNavigator from "../home";
 import { Theme } from "../../constants";
 import Ionicons from "@expo/vector-icons/Ionicons";
@@ -9,50 +9,44 @@ const BottomTab = createBottomTabNavigator();
 const TabsNavigator = () => {
   return (
     <BottomTab.Navigator
-      initialRouteName="Home"
+      initialRouteName="mainNavigation"
       screenOptions={{
-        headerShown: false,
-        tabBarLabelStyle: {
-          fontFamily: "OpenSans-Bold",
-          fontSize: 12,
-        },
         tabBarStyle: {
           backgroundColor: Theme.colors.backGroundColor,
-          paddingTop:8
+          paddingTop: 8,
         },
         tabBarActiveTintColor: Theme.colors.textColor,
         tabBarInactiveTintColor: Theme.colors.grey,
-        tabBarIconStyle: {
-          fontSize: 22,
-        },
       }}
     >
       <BottomTab.Screen
-        name="Home"
+        name="mainNavigation"
         component={HomeNavigator}
         options={{
           tabBarLabel: "",
           tabBarIcon: ({ focused, color, size }) => (
-            <Ionicons
-              name={"home-outline"}
-              size={size}
-              color={color}
-            />
+            <Ionicons name={"home-outline"} size={size} color={color} />
           ),
+          headerShown: false,
         }}
       />
       <BottomTab.Screen
         name="SleepNow"
-        component={SleepNow}
+        component={SelectedTime}
         options={{
           tabBarLabel: "",
           tabBarIcon: ({ focused, color, size }) => (
-            <Ionicons
-              name={"bed-outline"}
-              size={size}
-              color={color}
-            />
+            <Ionicons name={"bed-outline"} size={size} color={color} />
           ),
+          headerTitle: "Optimal Bedtimes",
+          headerStyle: {
+            backgroundColor: Theme.colors.backGroundColor,
+          },
+          headerTintColor: Theme.colors.textColor,
+          headerTitleStyle: {
+            fontFamily: "OpenSans-Bold",
+          },
+          headerTitleAlign: "center",
         }}
       />
       <BottomTab.Screen
@@ -61,12 +55,17 @@ const TabsNavigator = () => {
         options={{
           tabBarLabel: "",
           tabBarIcon: ({ focused, color, size }) => (
-            <Ionicons
-              name={"settings-outline"}
-              size={size}
-              color={color}
-            />
+            <Ionicons name={"settings-outline"} size={size} color={color} />
           ),
+          headerTitle: "Settings",
+          headerStyle: {
+            backgroundColor: Theme.colors.backGroundColor,
+          },
+          headerTintColor: Theme.colors.textColor,
+          headerTitleStyle: {
+            fontFamily: "OpenSans-Bold",
+          },
+          headerTitleAlign: "center",
         }}
       />
     </BottomTab.Navigator>
