@@ -1,4 +1,3 @@
-// import {StyleSheet} from 'react-native'
 import { StyleSheet } from "react-native";
 import { Theme } from "../../constants";
 
@@ -7,16 +6,12 @@ export const styles = StyleSheet.create({
     flex: 1,
     height: 90,
     borderRadius: 10,
-    marginHorizontal: 20,
-    marginVertical: 10,
+    marginHorizontal: 10,
+    marginVertical: 5,
   },
   containerTouchable: {
     flex: 1,
     borderRadius: 10,
-    justifyContent: "center",
-    alignItems: "center",
-    padding: 10,
-    marginVertical: 5,
     borderWidth: 1,
     borderColor: Theme.colors.textColor,
     borderRadius: 5,
@@ -27,10 +22,10 @@ export const styles = StyleSheet.create({
     width:'100%',
     justifyContent:'space-between',
     alignItems:'center',
-    paddingHorizontal:20,
+    paddingHorizontal:10,
   },
   text: {
-    fontSize: 17,
+    fontSize: 14,
     color: Theme.colors.textColor,
   },
 });
