@@ -9,7 +9,7 @@ import {
 import { styles } from "./styles";
 import { useState } from "react";
 import { InputTime } from "../../components";
-import { Theme } from "../../constants";
+import { useSelector } from "react-redux";
 
 const Home = ({ navigation }) => {
   const initialState = {
@@ -23,6 +23,7 @@ const Home = ({ navigation }) => {
     showPicker: false,
   };
   const [state, setState] = useState(initialState);
+  const imgUri = useSelector((state) => state.auth.userProfileImg);
 
   const handleChangeHour = (event, selectedDate) => {
     if(selectedDate.getTime()!==state.date.getTime()){
@@ -56,7 +57,7 @@ const Home = ({ navigation }) => {
       hour,
       minute,
       second,
-      isNow: false,
+      // isNow:false,
     });
     setState(initialState);
   };
@@ -67,9 +68,9 @@ const Home = ({ navigation }) => {
         <Image
           resizeMode="contain"
           source={{
-            uri: "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7e/640-crescent-moon.svg/2048px-640-crescent-moon.svg.png",
+            uri: imgUri??"https://upload.wikimedia.org/wikipedia/commons/thumb/7/7e/640-crescent-moon.svg/2048px-640-crescent-moon.svg.png",
           }}
-          style={styles.icon}
+          style={styles.img}
         />
         <Text style={styles.text}>I want to wake up at...</Text>
       </View>
@@ -90,7 +91,6 @@ const Home = ({ navigation }) => {
         <Button
           title="Calculate"
           onPress={handleSetTime}
-          // color={Theme.colors.backGroundColor}
         />
       </View>
     </View>

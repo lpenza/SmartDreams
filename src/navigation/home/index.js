@@ -2,7 +2,6 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { Home, SelectedTime } from "../../screens";
 import { Theme } from "../../constants";
 
-
 const Stack = createNativeStackNavigator();
 
 const HomeNavigator = () => {
@@ -19,7 +18,7 @@ const HomeNavigator = () => {
       headerTitleAlign:'center',
     }}
     >
-      <Stack.Screen name="Home" component={Home} options={{ headerShown: false }} />
+      <Stack.Screen name="Home" component={Home} options={{ headerShown:false}} />
       <Stack.Screen name="SelectedTime" component={SelectedTime} options={{
         headerTitle:'Optimal Bedtimes'
       }}/>

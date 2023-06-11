@@ -1,5 +1,5 @@
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import { Config, SelectedTime } from "../../screens";
+import { Config, History } from "../../screens";
 import HomeNavigator from "../home";
 import { Theme } from "../../constants";
 import Ionicons from "@expo/vector-icons/Ionicons";
@@ -30,7 +30,7 @@ const TabsNavigator = () => {
           headerShown: false,
         }}
       />
-      <BottomTab.Screen
+      {/* <BottomTab.Screen
         name="SleepNow"
         component={SelectedTime}
         options={{
@@ -39,6 +39,25 @@ const TabsNavigator = () => {
             <Ionicons name={"bed-outline"} size={size} color={color} />
           ),
           headerTitle: "Optimal Bedtimes",
+          headerStyle: {
+            backgroundColor: Theme.colors.backGroundColor,
+          },
+          headerTintColor: Theme.colors.textColor,
+          headerTitleStyle: {
+            fontFamily: "OpenSans-Bold",
+          },
+          headerTitleAlign: "center",
+        }}
+      /> */}
+      <BottomTab.Screen
+        name="History"
+        component={History}
+        options={{
+          tabBarLabel: "",
+          tabBarIcon: ({ focused, color, size }) => (
+            <Ionicons name={"newspaper-outline"} size={size} color={color} />
+          ),
+          headerTitle: "History",
           headerStyle: {
             backgroundColor: Theme.colors.backGroundColor,
           },

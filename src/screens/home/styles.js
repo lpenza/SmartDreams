@@ -8,6 +8,11 @@ export const styles = StyleSheet.create({
     paddingTop: 90,
     paddingHorizontal: 30,
   },
+  img:{
+    width: 70,
+    height: 70,
+    borderRadius:50,
+  },
   titleContainer: {
     alignItems: "center",
   },
@@ -16,10 +21,6 @@ export const styles = StyleSheet.create({
     fontSize: 28,
     marginVertical: 40,
     fontFamily: "OpenSans-Bold",
-  },
-  icon: {
-    width: 60,
-    height: 60,
   },
   optionText: {
     color: Theme.colors.textColor,

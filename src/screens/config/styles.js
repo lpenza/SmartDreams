@@ -3,13 +3,13 @@ import { Theme } from "../../constants";
 
 export const styles = StyleSheet.create({
   container: {
-    flex:1,
-    justifyContent:'center',
-    alignItems:'center',
-    backgroundColor:Theme.colors.backGroundColor
+    flex: 1,
+    backgroundColor: Theme.colors.backGroundColor,
+    paddingVertical:30,
+    paddingHorizontal:15,
   },
-  buttonContainer:{
-    flexDirection:'row',
-    gap:2,
-  }
+  buttonContainer: {
+    flexDirection: "row",
+    gap: 2,
+  },
 });
