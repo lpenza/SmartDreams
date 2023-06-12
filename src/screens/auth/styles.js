@@ -17,6 +17,8 @@ export const styles = StyleSheet.create({
     borderColor:theme.colors.secondary,
     borderRadius:7,
     minHeight: 340,
+    backgroundColor:'white',
+
   },
   title: {
     fontSize: 16,
@@ -55,11 +57,11 @@ export const styles = StyleSheet.create({
     padding: 20,
     borderRadius: 10,
     borderWidth: 1,
-    backgroundColor:theme.colors.white
+    backgroundColor:theme.colors.backGroundColor,
   },
   modalTitle: {
     fontSize: 14,
     textAlign: "center",
-    color:theme.colors.textColor
+    color:theme.colors.white
   },
 });

@@ -1,6 +1,8 @@
 import { View, Text, TouchableOpacity } from "react-native";
 import { styles } from "./styles";
 import { useState } from "react";
+import Ionicons from "@expo/vector-icons/Ionicons";
+
 
 const HistoryItem = ({ date, hours, timeSelected, cycles, wakeUpTime }) => {
   let qtyhours = Math.floor(hours);
@@ -14,6 +16,7 @@ const HistoryItem = ({ date, hours, timeSelected, cycles, wakeUpTime }) => {
       <View style={styles.dateContainer}>
         <Text style={styles.text}>Date</Text>
         <Text style={styles.text}>{date}</Text>
+        <Ionicons name="chevron-down" size={18} color="black" />
       </View>
       {showInfo ? (
         <>

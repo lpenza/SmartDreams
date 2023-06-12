@@ -4,7 +4,7 @@ import { Theme } from "../../constants";
 export const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: Theme.colors.backGroundColor,
+    backgroundColor: '#F0F8FA',
     paddingTop: 90,
     paddingHorizontal: 30,
   },
@@ -36,6 +36,7 @@ export const styles = StyleSheet.create({
     padding: 25,
     borderRadius: 10,
     height: 150,
+    backgroundColor:Theme.colors.backGroundColor
   },
   buttonsCointainer: {
     justifyContent: "space-around",

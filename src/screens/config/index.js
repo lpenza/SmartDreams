@@ -1,23 +1,38 @@
-import { View, Text, Button } from "react-native";
+import { View, Text, Button, TouchableOpacity, TextInput } from "react-native";
 import { styles } from "./styles";
 import { Theme } from "../../constants";
 import { useDispatch,useSelector } from "react-redux";
-import { selectTheme } from "../../store/actions/themes.action";
+import {
+  selectTime,
+  selecCycleLength,
+  selectSleepGoal,
+} from "../../store/actions/times.action";
 import { singOut } from "../../store/actions";
-import {Input} from '../../components'
-
+import Ionicons from "@expo/vector-icons/Ionicons";
+import React, { useState } from "react";
 
 const Config = () => {
-  const themes = ["Dark", "Light"];
   const dispatch = useDispatch();
-  let selectedTheme=useSelector((state)=>state.themes.selectedTheme)
-  
-  const OnSelectDarkTheme = () => {
-    dispatch(selectTheme(themes[0]));
+  const selectedTime = useSelector((state) => state.times.selectedTime);
+  const goalQtyCycles = useSelector((state) => state.times.sleepGoal);
+  const currentCycleLength = useSelector((state) => state.times.cycleLength);
+  const [minutes, setMinutes] = useState("");
+  const [cyclesQty, setCyclesQty] = useState("");
+  const [cycleLength, setCycleLength] = useState("");
+
+  const OnSelectTime = () => {
+    dispatch(selectTime(minutes));
+    setMinutes("");
   };
 
-  const OnSelectLightTheme = () => {
-    dispatch(selectTheme(themes[1]));
+  const OnSelectCyclesQty = () => {
+    dispatch(selectSleepGoal(cyclesQty));
+    setCyclesQty("");
+  };
+
+  const OnSelectCycleLength = () => {
+    dispatch(selecCycleLength(cycleLength));
+    setCycleLength("");
   };
 
   const onHandleButtonModal = () => {
@@ -26,16 +41,65 @@ const Config = () => {
 
   return (
     <View style={styles.container}>
-      <Text style={{ color: Theme.colors.textColor }}>Time to Sleep</Text>
-      {/* <Text style={{ color: Theme.colors.textColor }}>15</Text> */}
-      <Input />
-      {/* <Text style={{ color: Theme.colors.textColor }}>Selected Theme</Text> */}
-      {/* <View style={styles.buttonContainer}>
-        <Button title="Dark" onPress={OnSelectDarkTheme} />
-        <Button title="Light" onPress={OnSelectLightTheme} />
+      <View style={styles.setTimeContainer}>
+        <Text style={{ color: Theme.colors.textColor }}>Time to Sleep</Text>
+        <View style={styles.inputContainer}>
+          <TextInput
+            style={styles.input}
+            keyboardType="number-pad"
+            onChangeText={(text) => setMinutes(text)}
+            value={minutes}
+            placeholder={selectedTime.toString()}
+          />
+          <TouchableOpacity disabled={!minutes} onPress={OnSelectTime}>
+            <Ionicons
+              name={minutes ? "md-save" : "md-save-outline"}
+              size={24}
+              color="black"
+            />
+          </TouchableOpacity>
+        </View>
+        <Text style={{ color: Theme.colors.textColor }}>
+          Sleep Cycle Length
+        </Text>
+        <View style={styles.inputContainer}>
+          <TextInput
+            style={styles.input}
+            keyboardType="number-pad"
+            onChangeText={(text) => setCycleLength(text)}
+            value={cycleLength}
+            placeholder={currentCycleLength.toString()}
+          />
+          <TouchableOpacity disabled={!cycleLength} onPress={OnSelectCycleLength}>
+            <Ionicons
+              name={cycleLength ? "md-save" : "md-save-outline"}
+              size={24}
+              color="black"
+            />
+          </TouchableOpacity>
+        </View>
+        <Text style={{ color: Theme.colors.textColor }}>Sleep Goal</Text>
+        <View style={styles.inputContainer}>
+          <TextInput
+            style={styles.input}
+            keyboardType="number-pad"
+            onChangeText={(text) => setCyclesQty(text)}
+            value={cyclesQty}
+            placeholder={goalQtyCycles.toString()}
+          />
+          <TouchableOpacity disabled={!cyclesQty} onPress={OnSelectCyclesQty}>
+            <Ionicons
+              name={cyclesQty ? "md-save" : "md-save-outline"}
+              size={24}
+              color="black"
+            />
+          </TouchableOpacity>
+        </View>
       </View>
-      <Text style={{ color: Theme.colors.textColor }}>{selectedTheme}</Text> */}
-      <Button title="Sing Out" onPress={onHandleButtonModal} />
+      <View style={styles.buttonContainer}>
+        {/* <Button title="Save" onPress={() => null} /> */}
+        <Button title="Sing Out" onPress={onHandleButtonModal} />
+      </View>
     </View>
   );
 };

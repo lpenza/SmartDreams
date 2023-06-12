@@ -57,7 +57,7 @@ const Home = ({ navigation }) => {
       hour,
       minute,
       second,
-      // isNow:false,
+      isNow:false,
     });
     setState(initialState);
   };
