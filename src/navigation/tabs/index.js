@@ -1,5 +1,5 @@
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import { Config, History } from "../../screens";
+import { Config, History,SelectedTime } from "../../screens";
 import HomeNavigator from "../home";
 import { Theme } from "../../constants";
 import Ionicons from "@expo/vector-icons/Ionicons";
@@ -30,7 +30,7 @@ const TabsNavigator = () => {
           headerShown: false,
         }}
       />
-      {/* <BottomTab.Screen
+      <BottomTab.Screen
         name="SleepNow"
         component={SelectedTime}
         options={{
@@ -48,7 +48,7 @@ const TabsNavigator = () => {
           },
           headerTitleAlign: "center",
         }}
-      /> */}
+      />
       <BottomTab.Screen
         name="History"
         component={History}

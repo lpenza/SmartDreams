@@ -1,9 +1,9 @@
 import { createStore, combineReducers,applyMiddleware } from "redux";
 import thunk from "redux-thunk";
-import { themesReducer,historyReducer,authReducer } from "./reducers/index";
+import { historyReducer,authReducer,timeReducer } from "./reducers/index";
 
 const rootReducer = combineReducers({
-  themes: themesReducer,
+  times: timeReducer,
   history:historyReducer,
   auth: authReducer,
 });

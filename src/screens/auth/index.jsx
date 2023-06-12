@@ -1,4 +1,4 @@
-import { useReducer, useState } from "react";
+import { useReducer } from "react";
 import {
   View,
   Text,
@@ -85,7 +85,7 @@ const Auth = ({ navigation }) => {
           error={formState.email.error}
           touched={formState.email.touched}
           hasError={formState.email.hasError}
-          color={theme.colors.textColor}
+          color={theme.colors.white}
         />
         <Input
           placeholder="********"

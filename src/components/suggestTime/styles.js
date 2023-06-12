@@ -8,6 +8,7 @@ export const styles = StyleSheet.create({
     borderRadius: 10,
     marginHorizontal: 10,
     marginVertical: 5,
+    backgroundColor: Theme.colors.backGroundColor,
   },
   containerTouchable: {
     flex: 1,

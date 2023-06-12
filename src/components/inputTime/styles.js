@@ -1,5 +1,6 @@
 import { StyleSheet } from "react-native";
 import { Theme } from "../../constants";
+import theme from "../../constants/theme";
 
 export const styles = StyleSheet.create({
   input: {
@@ -13,6 +14,7 @@ export const styles = StyleSheet.create({
     fontSize: 14,
     textAlign: "center",
     paddingVertical: 25,
+    backgroundColor:'white'
   },
   timeContainer: {
     flexDirection: "row",
@@ -21,6 +23,6 @@ export const styles = StyleSheet.create({
   },
   container:{
     flex:1,
-    alignItems:'center'
+    alignItems:'center',
   }
 });
