@@ -1,5 +1,9 @@
-import { FIREBASE_AUTH_SIGN_IN_URL, FIREBASE_AUTH_SIGN_UP_URL } from "../../constants";
+import {
+  FIREBASE_AUTH_SIGN_IN_URL,
+  FIREBASE_AUTH_SIGN_UP_URL,
+} from "../../constants";
 import { authTypes } from "../types";
+import { FindImage, insertData } from "../../db";
 
 const {
   SIGN_IN_REQUEST,
@@ -12,7 +16,7 @@ const {
   CLEAR_ERROR,
 } = authTypes;
 
-export const signUp = ({ email, password,name,lastName,profileImg }) => {
+export const signUp = ({ email, password, name, lastName, profileImg }) => {
   return async (dispatch) => {
     try {
       dispatch({ type: SIGN_UP_REQUEST });
@@ -33,13 +37,14 @@ export const signUp = ({ email, password,name,lastName,profileImg }) => {
       }
 
       const data = await response.json();
+      const result = insertData(data.localId, profileImg);
       dispatch({
         type: SIGN_UP_SUCCESS,
         token: data.idToken,
         userId: data.localId,
-        userName:name,
-        userLastName:lastName,
-        userProfileImg:profileImg,
+        userName: name,
+        userLastName: lastName,
+        profileImg: profileImg,
       });
     } catch (error) {
       dispatch({
@@ -74,10 +79,13 @@ export const signIn = ({ email, password }) => {
           error: data.error.message,
         });
       } else {
+        const result = await FindImage(data.localId);
+        const img = result?.rows?._array ? result.rows._array[0].image : "";
         dispatch({
           type: SIGN_IN_SUCCESS,
           token: data.idToken,
           userId: data.localId,
+          profileImg: img,
         });
       }
     } catch (error) {

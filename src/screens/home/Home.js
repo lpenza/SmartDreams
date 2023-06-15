@@ -23,7 +23,7 @@ const Home = ({ navigation }) => {
     showPicker: false,
   };
   const [state, setState] = useState(initialState);
-  const imgUri = useSelector((state) => state.auth.userProfileImg);
+  const imgUri = useSelector((state) => state.auth.profileImg);
 
   const handleChangeHour = (event, selectedDate) => {
     if(selectedDate.getTime()!==state.date.getTime()){
