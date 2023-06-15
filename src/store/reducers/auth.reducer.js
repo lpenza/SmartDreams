@@ -17,6 +17,7 @@ const initialState = {
   token: null,
   userId: null,
   hasError: false,
+  profileImg:'',
 };
 
 const authReducer = (state = initialState, action) => {
@@ -33,7 +34,7 @@ const authReducer = (state = initialState, action) => {
         userId: action.userId,
         userName:action.userName,
         userLastName:action.userLastName,
-        userProfileImg:action.userProfileImg,
+        profileImg:action.profileImg,
         isLoading: false,
         error: null,
         hasError: false,
@@ -58,6 +59,7 @@ const authReducer = (state = initialState, action) => {
         token: action.token,
         userId: action.userId,
         isLoading: false,
+        profileImg:action.profileImg,
         error: null,
         hasError: false,
       };
