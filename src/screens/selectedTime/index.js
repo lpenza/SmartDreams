@@ -1,92 +1,98 @@
+import React, { useCallback, useEffect, useState } from "react";
 import { Text, View, FlatList } from "react-native";
 import { SuggestTime } from "../../components";
 import { styles } from "./styles";
+import { useFocusEffect } from "@react-navigation/native";
+import moment from "moment";
+import { useSelector } from "react-redux";
 
 
 const SelectedTime = ({ route }) => {
-  let hour, minute, second;
-  ({ hour, minute, second } = route.params);
-  // if (route.params) {
-  // } else {
-  //   const dateNow = new Date();
-  //   hour = dateNow.getHours();
-  //   minute = dateNow.getMinutes();
-  //   second = dateNow.getSeconds();
-  //   isNow = true;
-  // }
+  const [time, setTime] = useState(moment());
+  const [isNow, setIsNow] = useState(true);
+  const [date, setDate] = useState("");
+  const [timeSelected, setTimeSelected] = useState("");
+  const selectedTime = useSelector((state) => state.times.selectedTime);
+  const goalQtyCycles = useSelector((state) => state.times.sleepGoal);
+  const cycleLength = useSelector((state) => state.times.cycleLength);
 
-  const time = new Date();
-  time.setHours(hour);
-  time.setMinutes(minute);
-  time.setSeconds(second);
-  const date = time
-    .toLocaleString("en-GB", { timeZone: "UTC" })
-    .substring(0, 10);
+
+  useFocusEffect(
+    useCallback(() => {
+      if (route.params) {
+        const {
+          hour: routeHour,
+          minute: routeMinute,
+          second: routeSecond,
+          isNow: routeIsNow,
+        } = route.params;
+        const newTime = moment().set({
+          hour: routeHour,
+          minute: routeMinute,
+          second: routeSecond,
+        });
+        setTime(newTime);
+        setIsNow(routeIsNow);
+      } else {
+        const dateNow = moment();
+        setTime(dateNow);
+        setIsNow(true);
+      }
+    }, [route.params])
+  );
+
+  useEffect(() => {
+    setDate(time.format("DD-MM-YYYY"));
+    setTimeSelected(time.format("hh:mm A"));
+  }, [time]);
 
   const findOptions = () => {
-    let options = [];
+    let SweemOptions = [];
     let newSuggestedtime;
     let cycles = 0;
-    for (i = 0; i < 6; i++) {
-      if (i === 0) {
-        newSuggestedtime = new Date(time.setMinutes(time.getMinutes() - 105));
-        cycles++;
+    for (let i = 0; i < 6; i++) {
+      if (isNow) {
+        if (i === 0) {
+          newSuggestedtime = moment(time).add((Number(selectedTime)+Number(cycleLength)), "minutes");
+        } else {
+          newSuggestedtime = moment(newSuggestedtime).add(cycleLength, "minutes");
+        }
       } else {
-        newSuggestedtime = new Date(
-          newSuggestedtime.setMinutes(newSuggestedtime.getMinutes() - 90)
-        );
-        cycles++;
+        if (i === 0) {
+          newSuggestedtime = moment(time).subtract((Number(selectedTime)+Number(cycleLength)), "minutes");
+        } else {
+          newSuggestedtime = moment(newSuggestedtime).subtract(cycleLength, "minutes");
+          
+        }
       }
-      // if (!isNow) {
-      // }
-      //  else {
-      //   if (i === 0) {
-      //     newSuggestedtime = new Date(time.setMinutes(time.getMinutes() + 105));
-      //   } else {
-      //     newSuggestedtime = new Date(
-      //       newSuggestedtime.setMinutes(newSuggestedtime.getMinutes() + 90)
-      //     );
-      //   }
-      // }
+      cycles++;
       const newSuggest = {
-        id: i,
-        time: newSuggestedtime.toLocaleTimeString("en-US", {
-          hour12: true,
-          hour: "numeric",
-          minute: "numeric",
-          second: undefined,
-        }),
-        status: cycles === 5 || cycles === 6 ? "SUGGESTED" : "",
+        id: i.toString(),
+        time: newSuggestedtime.format("hh:mm A"),
+        status: cycles == goalQtyCycles ? "SUGGESTED" : "",
         cycles: cycles.toString(),
         hours: (cycles * 1.5).toFixed(2),
       };
-      options.push(newSuggest);
+      SweemOptions.push(newSuggest);
     }
-    // options = !isNow ? options.reverse() : options;
-    return options.reverse();
+    return isNow ? SweemOptions : SweemOptions.reverse();
   };
-
-  const timeSelected = time.toLocaleTimeString("en-US", {
-    hour12: true,
-    hour: "numeric",
-    minute: "numeric",
-    second: undefined,
-  });
 
   return (
     <View style={styles.container}>
       <View style={styles.titleContainer}>
         <Text style={styles.text}>
-          Bedtime options for feeling refreshed at: {timeSelected}
-          {/* {!isNow
+          {!isNow
             ? `Bedtime options for feeling refreshed at: ${timeSelected}`
-            : "If you sleep now, set alarm for these times:"} */}
+            : "If you sleep now, set alarm for these times:"}
         </Text>
       </View>
       <View style={styles.listContainer}>
         <FlatList
           data={findOptions()}
-          renderItem={({ item }) => <SuggestTime item={item} date={date} timeSelected={timeSelected} />}
+          renderItem={({ item }) => (
+            <SuggestTime item={item} date={date} timeSelected={timeSelected} />
+          )}
           keyExtractor={(item) => item.id}
         />
       </View>
