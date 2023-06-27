@@ -97,7 +97,6 @@ const Config = () => {
         </View>
       </View>
       <View style={styles.buttonContainer}>
-        {/* <Button title="Save" onPress={() => null} /> */}
         <Button title="Sing Out" onPress={onHandleButtonModal} />
       </View>
     </View>

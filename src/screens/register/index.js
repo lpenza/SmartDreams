@@ -72,7 +72,6 @@ const Register = () => {
             onHandlerInputChange({ value: text, name: "name" })
           }
           value={formState.name.value}
-          //   label="Name"
           error={formState.name.error}
           touched={formState.name.touched}
           hasError={formState.name.hasError}
@@ -87,7 +86,6 @@ const Register = () => {
             onHandlerInputChange({ value: text, name: "lastName" })
           }
           value={formState.lastName.value}
-          //   label="Your last name"
           error={formState.lastName.error}
           touched={formState.lastName.touched}
           hasError={formState.lastName.hasError}
@@ -102,7 +100,6 @@ const Register = () => {
             onHandlerInputChange({ value: text, name: "email" })
           }
           value={formState.email.value}
-          //   label="Email"
           error={formState.email.error}
           touched={formState.email.touched}
           hasError={formState.email.hasError}
@@ -117,7 +114,6 @@ const Register = () => {
             onHandlerInputChange({ value: text, name: "password" })
           }
           value={formState.password.value}
-          //   label="Password"
           error={formState.password.error}
           touched={formState.password.touched}
           hasError={formState.password.hasError}

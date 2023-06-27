@@ -20,8 +20,6 @@ export const addHistory = (history) => {
         }),
       });
 
-      // const result = await response.json();
-
       dispatch({
         type: ADD_HISTORY,
         history,
