@@ -1,5 +1,5 @@
-export {default as Home} from './home/Home';
-export {default as SelectedTime} from './selectedTime/SelectedTime';
+export {default as Home} from './home';
+export {default as SelectedTime} from './selectedTime';
 export {default as Config} from './config';
 export {default as History} from './history';
 export {default as Auth} from './auth';
